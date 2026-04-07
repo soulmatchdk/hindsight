@@ -1,0 +1,50 @@
+Parameter;Værdi;Enhed
+;;
+;"OMKOSTNINGSSAMMENLIGNER - BetterHuman_Brains";;
+;"For CFO'er og økonomiansvarlige";;
+;;
+;;INDTASTE PARAMETRE;;
+Antal medarbejdere;10;antal
+Gennemsnitlig løn (DKK/år);450000;DKK
+Nuværende systemomkostning (DKK/år);120000;DKK
+Årlig vedligeholdelse (DKK/år);25000;DKK
+Minutter sparet pr. samtale;10;min
+Antal samtaler/dag pr. medarbejder;20;antal
+Licenspris pr. bruger/måned (DKK);299;DKK
+Implementeringsomkostning (DKK);25000;DKK
+;;
+;;BEREGNEDE VÆRDIER;;
+Arbejdsdage/år;230;dage
+Timepris (beregnet);260,27;DKK/time
+;;
+;;STATUS QUO (NUVÆRENDE SITUATION);;
+Årlig licens;120000;DKK
+Årlig vedligeholdelse;25000;DKK
+Implementering (år 1);0;DKK
+Produktionstid sparet værdi;0;DKK
+Total omkostning år 1;145000;DKK
+Total omkostning år 2+;145000;DKK
+;;
+;;BETTERHUMAN_BRAINS;;
+Årlig licens;35880;DKK
+Årlig vedligeholdelse (10%);3588;DKK
+Implementering (år 1);25000;DKK
+Produktionstid sparet værdi;600620;DKK
+Total omkostning år 1;-231696;DKK
+Total omkostning år 2+;39468;DKK
+;;
+;;SAMMENLIGNING;;
+Besparelse år 1;376696;DKK
+Årlig besparelse (fra år 2);105532;DKK
+ROI;435%;procent
+Payback periode;0,3;måneder
+;;
+;;KONKLUSION;;
+;Med 10 medarbejdere kan din organisation spare 105.532 DKK årligt ved at vælge BetterHuman_Brains. Payback-perioden er ca. 0,3 måneder (under 1 måned).;
+;;
+;;FORUDSÆTNINGER;
+;Tidsbesparelse baseret på 8-12 minutter pr. samtale (dokumenteret gennemsnit)
+;230 arbejdsdage, 7,5 timer/dag
+;Kilde: case-studies-benefits.md
+;;
+;"NOTE: Tilpas værdierne i INDTASTE PARAMETRE sektionen til jeres specifikke situation";

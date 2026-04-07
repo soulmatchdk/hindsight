@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omkostningssammenligner - BetterHuman_Brains</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #1e3a5f;
+            --secondary: #2d5a87;
+            --accent: #4CAF50;
+            --danger: #e74c3c;
+            --light: #f8f9fa;
+            --border: #dee2e6;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .card-header {
+            background: var(--primary);
+            color: white;
+            padding: 24px 32px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .card-body {
+            padding: 32px;
+        }
+        
+        .input-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .input-group label {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+        
+        .input-group input {
+            padding: 12px 16px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+        
+        .section-title {
+            grid-column: 1 / -1;
+            font-size: 1.1rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-top: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border);
+        }
+        
+        .calculate-btn {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, var(--accent) 0%, #45a049 100%);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 24px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+        }
+        
+        .results {
+            display: none;
+            margin-top: 32px;
+        }
+        
+        .results.show {
+            display: block;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+        
+        .result-box {
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .result-box.highlight {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+        
+        .result-box.accent {
+            background: linear-gradient(135deg, var(--accent) 0%, #45a049 100%);
+            color: white;
+        }
+        
+        .result-box.neutral {
+            background: var(--light);
+            border: 1px solid var(--border);
+        }
+        
+        .result-box.danger {
+            background: #fef3f2;
+            border: 2px solid var(--danger);
+        }
+        
+        .result-box .label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .result-box .value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 24px;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .comparison-table th {
+            background: var(--light);
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .savings {
+            color: var(--accent);
+            font-weight: 700;
+        }
+        
+        .roi-callout {
+            background: linear-gradient(135deg, #fff8e6 0%, #fff3cd 100%);
+            border: 2px solid #ffc107;
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 24px;
+            text-align: center;
+        }
+        
+        .roi-callout h3 {
+            color: #856404;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+        
+        .roi-callout p {
+            color: #856404;
+        }
+        
+        .disclaimer {
+            margin-top: 32px;
+            padding: 16px;
+            background: var(--light);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .card-body {
+                padding: 20px;
+            }
+            
+            .result-box .value {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Omkostningssammenligner</h1>
+            <p>BetterHuman_Brains vs. Status Quo</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">Indtast dine data</div>
+            <div class="card-body">
+                <div class="input-section">
+                    <div class="section-title">Nuværende situation</div>
+                    
+                    <div class="input-group">
+                        <label>Antal medarbejdere</label>
+                        <input type="number" id="employees" value="10" min="1">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Gennemsnitlig løn (DKK/år)</label>
+                        <input type="number" id="salary" value="450000" min="0" step="10000">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Nuværende systemomkostning (DKK/år)</label>
+                        <input type="number" id="currentSystem" value="120000" min="0" step="10000">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Årlig vedligeholdelse (DKK/år)</label>
+                        <input type="number" id="maintenance" value="25000" min="0" step="5000">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Minutter sparet pr. samtale</label>
+                        <input type="number" id="timeSaved" value="10" min="0">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Antal samtaler/dag pr. medarbejder</label>
+                        <input type="number" id="dailyCalls" value="20" min="1">
+                    </div>
+                    
+                    <div class="section-title">BetterHuman_Brains investering</div>
+                    
+                    <div class="input-group">
+                        <label>Licenspris pr. bruger/måned (DKK)</label>
+                        <input type="number" id="licensePerUser" value="299" min="0">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Implementeringsomkostning (DKK)</div>
+                        <input type="number" id="implementation" value="25000" min="0" step="5000">
+                    </div>
+                    
+                    <button class="calculate-btn" onclick="calculate()">Beregn ROI</button>
+                </div>
+                
+                <div class="results" id="results">
+                    <div class="results-grid">
+                        <div class="result-box highlight">
+                            <div class="label">Total investering (år 1)</div>
+                            <div class="value" id="totalInvestment">-</div>
+                        </div>
+                        <div class="result-box neutral">
+                            <div class="label">Årlig drift (år 2+)</div>
+                            <div class="value" id="annualCost">-</div>
+                        </div>
+                        <div class="result-box accent">
+                            <div class="label">Årlig besparelse</div>
+                            <div class="value" id="annualSavings">-</div>
+                        </div>
+                        <div class="result-box highlight">
+                            <div class="label">ROI</div>
+                            <div class="value" id="roi">-</div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-box danger" style="margin-bottom: 24px;">
+                        <div class="label">Payback periode</div>
+                        <div class="value" id="payback">-</div>
+                    </div>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Omkostningspost</th>
+                                <th>Status Quo</th>
+                                <th>BetterHuman_Brains</th>
+                                <th>Forskel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Licens/Software</td>
+                                <td id="sqLicense">-</td>
+                                <td id="bhLicense">-</td>
+                                <td id="diffLicense">-</td>
+                            </tr>
+                            <tr>
+                                <td>Implementering</td>
+                                <td id="sqImpl">-</td>
+                                <td id="bhImpl">-</td>
+                                <td id="diffImpl">-</td>
+                            </tr>
+                            <tr>
+                                <td>Vedligeholdelse</td>
+                                <td id="sqMaint">-</td>
+                                <td id="bhMaint">-</td>
+                                <td id="diffMaint">-</td>
+                            </tr>
+                            <tr>
+                                <td>Produktionstid sparet</td>
+                                <td id="sqTime">-</td>
+                                <td id="bhTime">-</td>
+                                <td class="savings" id="diffTime">-</td>
+                            </tr>
+                            <tr style="font-weight: 700;">
+                                <td>Total (år 1)</td>
+                                <td id="sqTotal">-</td>
+                                <td id="bhTotal">-</td>
+                                <td class="savings" id="diffTotal">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="roi-callout">
+                        <h3>Konklusion</h3>
+                        <p id="conclusion">-</p>
+                    </div>
+                    
+                    <div class="disclaimer">
+                        <strong>Bemærk:</strong> Denne beregning er vejledende og baserer sig på de indtastede data. 
+                        Faktiske resultater kan variere afhængigt af organisationens specifikke forhold. 
+                        Besparelser på produktionstid er baseret på dokumenteret gennemsnitlig tidsbesparelse på 8-12 minutter pr. samtale 
+                        (kilde: case-studies-benefits.md).
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('da-DK', {
+                style: 'currency',
+                currency: 'DKK',
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+        
+        function calculate() {
+            const employees = parseInt(document.getElementById('employees').value) || 0;
+            const salary = parseInt(document.getElementById('salary').value) || 0;
+            const currentSystem = parseInt(document.getElementById('currentSystem').value) || 0;
+            const maintenance = parseInt(document.getElementById('maintenance').value) || 0;
+            const timeSaved = parseInt(document.getElementById('timeSaved').value) || 0;
+            const dailyCalls = parseInt(document.getElementById('dailyCalls').value) || 0;
+            const licensePerUser = parseInt(document.getElementById('licensePerUser').value) || 0;
+            const implementation = parseInt(document.getElementById('implementation').value) || 0;
+            
+            const workDays = 230;
+            const hourlyRate = salary / (workDays * 7.5);
+            
+            const annualTimeSavedHours = employees * dailyCalls * timeSaved * workDays / 60;
+            const annualTimeSavedValue = annualTimeSavedHours * hourlyRate;
+            
+            const bhLicense = employees * licensePerUser * 12;
+            const bhMaintenance = bhLicense * 0.1;
+            
+            const sqLicense = currentSystem;
+            const sqImpl = 0;
+            
+            const sqTotal = sqLicense + sqImpl + maintenance;
+            const bhTotal = bhLicense + implementation + bhMaintenance;
+            
+            const annualSavings = sqTotal - bhLicense - bhMaintenance;
+            
+            const totalInvestment = bhLicense + implementation + bhMaintenance - annualTimeSavedValue;
+            const annualCost = bhLicense + bhMaintenance;
+            
+            const roi = ((annualTimeSavedValue - (bhLicense + bhMaintenance)) / (bhLicense + implementation + bhMaintenance)) * 100;
+            
+            const payback = implementation > 0 ? (implementation / ((annualTimeSavedValue + currentSystem + maintenance) - (bhLicense + bhMaintenance))) * 12 : 0;
+            
+            document.getElementById('totalInvestment').textContent = formatCurrency(totalInvestment);
+            document.getElementById('annualCost').textContent = formatCurrency(annualCost);
+            document.getElementById('annualSavings').textContent = formatCurrency(annualSavings + annualTimeSavedValue);
+            document.getElementById('roi').textContent = roi.toFixed(0) + '%';
+            document.getElementById('payback').textContent = payback > 0 ? payback.toFixed(1) + ' måneder' : 'Ikke relevant';
+            
+            document.getElementById('sqLicense').textContent = formatCurrency(sqLicense);
+            document.getElementById('bhLicense').textContent = formatCurrency(bhLicense);
+            document.getElementById('diffLicense').textContent = formatCurrency(bhLicense - sqLicense);
+            
+            document.getElementById('sqImpl').textContent = formatCurrency(sqImpl);
+            document.getElementById('bhImpl').textContent = formatCurrency(implementation);
+            document.getElementById('diffImpl').textContent = formatCurrency(implementation);
+            
+            document.getElementById('sqMaint').textContent = formatCurrency(maintenance);
+            document.getElementById('bhMaint').textContent = formatCurrency(bhMaintenance);
+            document.getElementById('diffMaint').textContent = formatCurrency(bhMaintenance - maintenance);
+            
+            document.getElementById('sqTime').textContent = formatCurrency(0);
+            document.getElementById('bhTime').textContent = formatCurrency(-annualTimeSavedValue);
+            document.getElementById('diffTime').textContent = formatCurrency(annualTimeSavedValue);
+            
+            document.getElementById('sqTotal').textContent = formatCurrency(sqTotal);
+            document.getElementById('bhTotal').textContent = formatCurrency(bhTotal - annualTimeSavedValue);
+            document.getElementById('diffTotal').textContent = formatCurrency((bhTotal - annualTimeSavedValue) - sqTotal);
+            
+            const netSavings = annualTimeSavedValue + currentSystem + maintenance - bhLicense - bhMaintenance;
+            let conclusion = '';
+            if (netSavings > 0) {
+                conclusion = `Med ${employees} medarbejdere kan din organisation spare ${formatCurrency(netSavings)} årligt ved at vælge BetterHuman_Brains. Payback-perioden er ca. ${Math.max(0, payback).toFixed(1)} måneder.`;
+            } else {
+                conclusion = `Overvej at justere antallet af brugere eller licensprisen for at opnå en positiv business case.`;
+            }
+            document.getElementById('conclusion').textContent = conclusion;
+            
+            document.getElementById('results').classList.add('show');
+        }
+        
+        calculate();
+    </script>
+</body>
+</html>
