@@ -148,7 +148,7 @@ Support-agenten har fuld historik:
 - Alle løste og uløste problemer
 - Kundens præferencer og aftaler
 
-**Resultat:** 67% højere kundefejlvillighed
+**Resultat:** 67% højere kundefølsomhed
 
 ---
 
