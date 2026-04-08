@@ -56,7 +56,7 @@ Dette dokument giver salgsteamet værktøjer til at håndtere de mest almindelig
 "Det er faktisk en af de stærkeste business cases vi har set. Lad mig vise dig vores ROI-beregner – vi har bygget den specifikt til CFO'er. Den viser præcis: tid sparet, flere handler gennemført, kortere salgscyklus."
 
 **Backing:**
-*Authority* – Ved at tilbyde et værktøj designet til CFO'er, positionerer du dig som partner而不是 bare en leverandør. ROI-beregneren giver konkret dokumentation frem for vage løfter.
+*Authority* – Ved at tilbyde et værktøj designet til CFO'er, positionerer du dig som partner i stedet for bare en leverandør. ROI-beregneren giver konkret dokumentation frem for vage løfter.
 
 **Alternativ tilgang:**
 "Tilbyd at deltage i et kundemøde hvor CFO'en kan stille spørgsmål direkte. Vi har gjort det før med andre virksomheder i jeres størrelse. Det tager 30 minutter og giver ofte hurtig godkendelse."

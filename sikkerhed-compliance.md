@@ -67,10 +67,10 @@ BetterHuman_Brains tilbyder følgende datacentre tilgængelighed:
 
 ### 2.3 Data Kategorisering
 
-Vi opererer med tre dataategorier:
+Vi opererer med tre datakategorier:
 
 1. **Kundedata**: Kontooplysninger, faktureringsdata
-2. **Indholdsddata**: Data der behandles gennem AI-hukommelsessystemet
+2. **Indholdsdata**: Data der behandles gennem AI-hukommelsessystemet
 3. **Systemdata**: Logs, metrics, fejlrapporter
 
 ### 2.4 Data Retention
@@ -78,7 +78,7 @@ Vi opererer med tre dataategorier:
 | Datatype | Standard opbevaring | Kundespecifik |
 |----------|--------------------|----------------|
 | Kontooplysninger | Kontraktperiode + 2 år | Kan tilpasses |
-| Indholdsddata | Kundespecificeret | 30 dage - ubegrænset |
+| Indholdsdata | Kundespecificeret | 30 dage - ubegrænset |
 | Audit logs | 12 måneder | Kan forlænges |
 | Support-data | 24 måneder | Kan tilpasses |
 

@@ -370,7 +370,7 @@ skemaer. Systemet forstår naturligt sprog."
 │  │                                                 │   │
 │  │  ANBEFALING:                                   │   │
 │  │  • Hav ROI-beregning klar                      │   │
-│  │  • Forbered CTO-speakerafcis                  │   │
+│  │  • Forbered CTO-speakers                  │   │
 │  └─────────────────────────────────────────────────┘   │
 │                                                         │
 └─────────────────────────────────────────────────────────┘
@@ -395,7 +395,7 @@ mødeforberedelse med:
 - Specifikke anbefalinger
 
 SALGSPERSONENS KOMMENTAR: 
-'Hav ROI-beregning klar – forbered CTO-speakerafcis'
+'Hav ROI-beregning klar – forbered CTO-speakers'
 
 Dette ville tidligere kræve at sælgeren:
 1. Gennemgik alle sine noter

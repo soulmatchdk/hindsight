@@ -81,7 +81,7 @@
 **Løsning:** Fælles AI-hukommelse der deles på tværs af alle sælgere.
 
 **Resultater:**
-- Eliminering af duplicated客户服务: **100%**
+- Eliminering af duplikeret kundeservice: **100%**
 - Kunde-tilbageholdelsesrate: **Forbedret med 27%**
 - Trustpilot rating: **Fra 3,2 til 4,7 stjerner**
 - Genkøbsrate: **Stigning på 31%**
