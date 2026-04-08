@@ -66,7 +66,7 @@ Forskning viser, at vi glemmer 40-60% af ny information inden for 24 timer, hvis
 **3. AI-assistentens rolle**
 En AI-assistent med hukommelse kan ændre dette fundamentalt. Den kan:
 - Transskribere og identificere nøglebeslutninger
--自动 opsummere aftaler og følge op på tværs af møder
+- Automatisk opsummere aftaler og følge op på tværs af møder
 - Huske konteksten fra tidligere møder og bygge videre på den
 - Sikre at beslutninger faktisk følges op
 
