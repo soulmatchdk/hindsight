@@ -116,7 +116,7 @@ Vores løsning scorer state-of-the-art på LongMemEval benchmark — branchens s
 
 ## Slide 8: Konkret Use Case
 
-**Virksomhed: Mellomregning A/S (假设案例)**
+**Virksomhed: Regnskabsmidlet A/S**
 
 Situation:
 - 12 supportagenter
